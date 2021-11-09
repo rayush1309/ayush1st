@@ -1,0 +1,41 @@
+module radix_4_bit_booth_mult;
+
+	// Inputs
+	reg [15:0] multiplicand;
+	reg [15:0] multiplier;
+	reg start;
+	reg clk;
+
+	// Outputs
+	wire [31:0] prod;
+	wire ready;
+
+	// Instantiate the Unit Under Test (UUT)
+	imult_Booth_radix_4 uut (
+		.prod(prod), 
+		.ready(ready), 
+		.multiplicand(multiplicand), 
+		.multiplier(multiplier), 
+		.start(start), 
+		.clk(clk)
+	);
+
+	initial begin
+		// Initialize Inputs
+		multiplicand = 0;
+		multiplier = 0;
+		start = 0;
+		clk = 0;
+		#100 multiplicand = 4; multiplier = 3;
+		#100 multiplicand = 7 ; multiplier = 2;
+		#100 multiplicand = 6;multiplier = 5;
+
+		// Wait 100 ns for global reset to finish
+		#100;
+        
+		// Add stimulus here
+
+	end
+      
+endmodule
+
